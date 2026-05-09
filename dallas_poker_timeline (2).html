@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dallas Poker Room CO Battle — Timeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #141418;
+    --border: #2a2a32;
+    --accent-gold: #c9a84c;
+    --accent-red: #b83232;
+    --accent-green: #3d9e5f;
+    --accent-blue: #3b7fc4;
+    --accent-amber: #d4833a;
+    --text-primary: #e8e4da;
+    --text-secondary: #8a8580;
+    --text-dim: #4a4842;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Felt texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23ffffff04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+  }
+
+  .header-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 10px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  header h1 span {
+    color: var(--accent-gold);
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+  }
+
+  .legend-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* SECTION LABELS */
+  .era-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding-left: 58px;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border) 5%, var(--border) 95%, transparent);
+  }
+
+  .entry {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 6px;
+    position: relative;
+    animation: fadeIn 0.4s ease both;
+  }
+
+  .entry:last-child { margin-bottom: 0; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-6px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Stagger animation */
+  .entry:nth-child(1)  { animation-delay: 0.05s; }
+  .entry:nth-child(2)  { animation-delay: 0.10s; }
+  .entry:nth-child(3)  { animation-delay: 0.15s; }
+  .entry:nth-child(4)  { animation-delay: 0.20s; }
+  .entry:nth-child(5)  { animation-delay: 0.25s; }
+  .entry:nth-child(6)  { animation-delay: 0.30s; }
+  .entry:nth-child(7)  { animation-delay: 0.35s; }
+  .entry:nth-child(8)  { animation-delay: 0.40s; }
+  .entry:nth-child(9)  { animation-delay: 0.45s; }
+  .entry:nth-child(10) { animation-delay: 0.50s; }
+  .entry:nth-child(n+11) { animation-delay: 0.55s; }
+
+  .entry-marker {
+    flex-shrink: 0;
+    width: 57px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .dot-line {
+    width: 1px;
+    flex: 1;
+    min-height: 8px;
+    background: var(--border);
+    opacity: 0.4;
+  }
+
+  .entry-body {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .entry-body:hover {
+    border-color: #3a3a44;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .entry-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-secondary);
+    letter-spacing: 0.06em;
+  }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .tag-tch    { background: #1a2e3b; color: var(--accent-blue); }
+  .tag-shuffle{ background: #291d16; color: var(--accent-amber); }
+  .tag-ph     { background: #1e1230; color: #9b72d0; }
+  .tag-champ  { background: #1e2a1e; color: var(--accent-green); }
+  .tag-city   { background: #2a1818; color: var(--accent-red); }
+  .tag-court  { background: #2a2316; color: var(--accent-gold); }
+  .tag-atty   { background: #1e1e24; color: #7a7aaa; }
+  .tag-multi  { background: #222; color: #aaa; }
+
+  .entry-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .entry-detail {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .entry-detail strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  /* significance bar */
+  .sig-bar {
+    height: 2px;
+    border-radius: 1px;
+    margin-top: 10px;
+    opacity: 0.6;
+  }
+
+  /* City Attorney callout box */
+  .atty-box {
+    background: #141420;
+    border: 1px solid #2a2840;
+    border-left: 3px solid #7a7aaa;
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 32px;
+  }
+
+  .atty-box h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7a7aaa;
+    margin-bottom: 10px;
+  }
+
+  .atty-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 7px;
+    font-size: 12.5px;
+  }
+
+  .atty-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 160px;
+  }
+
+  .atty-years {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent-gold);
+    min-width: 120px;
+  }
+
+  .atty-note {
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  /* Weimer note box */
+  .weimer-box {
+    background: #181410;
+    border: 1px solid #3a2e1a;
+    border-left: 3px solid var(--accent-gold);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+
+  .weimer-box h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+  }
+
+  .weimer-box p {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .weimer-box p strong {
+    color: var(--text-primary);
+  }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 560px) {
+    .timeline::before { left: 20px; }
+    .entry-marker { width: 42px; }
+    .era-label { padding-left: 44px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="header-eyebrow">The Sham Report — Research File</div>
+    <h1>Dallas Poker Room<br><span>Certificate of Occupancy</span> Wars</h1>
+    <p class="header-sub">A documented timeline of the legal battle between the City of Dallas and private poker clubs — from the first CO approvals through the Texas Supreme Court's final refusal to hear the case, and the Champions Social Club parallel saga.</p>
+  </header>
+
+  <!-- CITY ATTORNEY CHAIN -->
+  <div class="atty-box">
+    <h3>⚖ Dallas City Attorney — Chain of Custody</h3>
+    <div class="atty-row">
+      <span class="atty-name">Larry Casto</span>
+      <span class="atty-years">2016 – Aug 31, 2018</span>
+      <span class="atty-note">Resigned; ran unsuccessfully for mayor</span>
+    </div>
+    <div class="atty-row">
+      <span class="atty-name">Chris Caso (Interim)</span>
+      <span class="atty-years">Sept 2018 – Apr 2020</span>
+      <span class="atty-note">Elevated from within; applied for permanent role</span>
+    </div>
+    <div class="atty-row">
+      <span class="atty-name">Chris Caso (Permanent)</span>
+      <span class="atty-years">Apr 2020 – Feb 28, 2023</span>
+      <span class="atty-note">Approved CO model in 2019, reversed position mid-2021; retired ahead of performance review</span>
+    </div>
+    <div class="atty-row">
+      <span class="atty-name">Tammy Palomino (Interim)</span>
+      <span class="atty-years">Mar 2023 – onward</span>
+      <span class="atty-note">First Assistant City Attorney; continued anti-poker position</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#3b7fc4"></div> Texas Card House</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#d4833a"></div> Shuffle 214</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#9b72d0"></div> Poker House Dallas</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3d9e5f"></div> Champions Social Club</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#b83232"></div> City Action</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div> Court Ruling</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7a7aaa"></div> City Attorney</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#888"></div> Multi-room</div>
+  </div>
+
+  <!-- ========== TIMELINE ========== -->
+  <div class="timeline">
+
+    <div class="era-label">Phase 1 — Approval Era (2018–2020)</div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#7a7aaa"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Jan 2019</span>
+          <span class="tag tag-tch">TCH</span>
+          <span class="tag tag-atty">City Attorney</span>
+        </div>
+        <div class="entry-title">Caso Blesses the Business Model at City Council</div>
+        <div class="entry-detail">Ryan Crow presents TCH's membership-based poker club model to Dallas City Council. <strong>Chris Caso — then in a subordinate city attorney role — stands beside Crow</strong> and tells council the model is legal under Texas law. Council rejects a special use permit that day but the legal green light is noted.</div>
+        <div class="sig-bar" style="background:#7a7aaa"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#3b7fc4"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Oct 2020</span>
+          <span class="tag tag-tch">TCH</span>
+        </div>
+        <div class="entry-title">Texas Card House Dallas Opens — CO Granted</div>
+        <div class="entry-detail">After more than two and a half years of negotiations with city staff, the city attorney's office, the Board of Adjustment, and the Dallas Police Department, <strong>Texas Card House receives its certificate of occupancy and opens</strong> its Dallas location off Harry Hines Boulevard near I-635. The room quickly draws ~650 players per day.</div>
+        <div class="sig-bar" style="background:#3b7fc4"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#d4833a"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">2020</span>
+          <span class="tag tag-shuffle">Shuffle 214</span>
+        </div>
+        <div class="entry-title">Shuffle 214 Completes Its CO Process</div>
+        <div class="entry-detail">Shuffle 214 goes through the city's lengthy, in-depth CO application process. General Manager Ross Carroll describes it as "a very specific, very tedious process" with full transparency about the poker room model. <strong>CO issued.</strong> Room opens in June 2021.</div>
+        <div class="sig-bar" style="background:#d4833a"></div>
+      </div>
+    </div>
+
+    <div class="era-label">Phase 2 — The Pivot (Mid-2021)</div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#3d9e5f"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">2021</span>
+          <span class="tag tag-champ">Champions</span>
+          <span class="tag tag-city">City Action</span>
+        </div>
+        <div class="entry-title">Champions Social Club — First CO Application DENIED</div>
+        <div class="entry-detail">Knighted Ventures (Roy Choi, Isaac Trumbo) has already purchased the former III Forks steakhouse at <strong>17776 Dallas Parkway</strong> (Collin County jurisdiction, Dallas address) and begins $15M renovations. When Champions applies for a CO, <strong>City Attorney Caso — now in the permanent role — declares poker rooms illegal</strong> and the application is denied. Council member Cara Mendelsohn celebrates the denial. This denial triggers the broader crackdown.</div>
+        <div class="sig-bar" style="background:#3d9e5f"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#b83232"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Summer–Fall 2021</span>
+          <span class="tag tag-city">City Action</span>
+          <span class="tag tag-atty">City Attorney</span>
+        </div>
+        <div class="entry-title">Caso Reverses His Own 2019 Position</div>
+        <div class="entry-detail">Amid neighborhood complaints (including a July 2021 violent incident at an illegal room in Mendelsohn's District 12), <strong>City Attorney Chris Caso quietly reverses his legal interpretation</strong>. His office now argues the "private place" exception in Texas law applies only to homes, not commercial clubs. Senior Assistant Attorney <strong>Gary Powell</strong> — hired in 2021 after a 36-year private practice career — is assigned to build the case against the poker rooms.</div>
+        <div class="sig-bar" style="background:#b83232"></div>
+      </div>
+    </div>
+
+    <div class="era-label">Phase 3 — Revocations & First Appeals (2021–2022)</div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#888"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Dec 2021 – Jan 2022</span>
+          <span class="tag tag-multi">TCH + Shuffle 214</span>
+          <span class="tag tag-city">City Action</span>
+        </div>
+        <div class="entry-title">CO Revocations — Texas Card House & Shuffle 214</div>
+        <div class="entry-detail"><strong>Texas Card House</strong> receives its revocation letter in December 2021 (some sources cite January 2022 as the official date). <strong>Shuffle 214</strong> receives a similar letter in mid-January 2022. Both are shocked — having operated with full city cooperation for years. Council member Omar Narvaez calls it "unfair." Both rooms stay open and file appeals with the Board of Adjustment.</div>
+        <div class="sig-bar" style="background:#888"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#9b72d0"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">~2021–2022</span>
+          <span class="tag tag-ph">Poker House Dallas</span>
+          <span class="tag tag-city">City Action</span>
+        </div>
+        <div class="entry-title">Poker House Dallas — A Different CO Problem</div>
+        <div class="entry-detail">Poker House Dallas on Regal Row had originally operated as the La Zona Rosa Cabaret club, receiving a CO for that use in <strong>2017</strong>. When they converted to a poker room in 2021, they <strong>never obtained a new CO</strong> for the change of use. The city later sues them separately. Their case proceeds on a distinct track from TCH and Shuffle 214.</div>
+        <div class="sig-bar" style="background:#9b72d0"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#c9a84c"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Mar 22, 2022</span>
+          <span class="tag tag-tch">TCH</span>
+          <span class="tag tag-court">Court / BOA</span>
+        </div>
+        <div class="entry-title">Board of Adjustment Rules 5–0 for TCH — CO Reinstated</div>
+        <div class="entry-detail">The Dallas Board of Adjustment <strong>unanimously votes 5-0 to reinstate Texas Card House's CO</strong>, calling the city's reversal politically motivated. Board member Kathleen Frankford: "There was never a good case made by the city." TCH remains open. The city now has 10 days to appeal. Shuffle 214's appeal is also pending at the BOA.</div>
+        <div class="sig-bar" style="background:#c9a84c"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#b83232"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">May 2022</span>
+          <span class="tag tag-tch">TCH</span>
+          <span class="tag tag-city">City Action</span>
+        </div>
+        <div class="entry-title">Interim Building Official David Session Sues the BOA</div>
+        <div class="entry-detail">Rather than accept the BOA's ruling, Dallas' interim building official <strong>David Session escalates by suing the Board of Adjustment</strong> — effectively the city suing itself — claiming the BOA exceeded its authority in reinstating the CO. This sets up a formal district court trial.</div>
+        <div class="sig-bar" style="background:#b83232"></div>
+      </div>
+    </div>
+
+    <div class="era-label">Phase 4 — District Court & Caso's Exit (2022–2023)</div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#c9a84c"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Oct 25 – Oct 27, 2022</span>
+          <span class="tag tag-tch">TCH</span>
+          <span class="tag tag-court">District Court</span>
+        </div>
+        <div class="entry-title">Judge Moyé Rules AGAINST TCH — CO Revoked Again</div>
+        <div class="entry-detail">Dallas County District Court Judge <strong>Eric V. Moyé hears the case and rules in favor of building official Session</strong>, siding with the city attorney's office. The CO is revoked a second time. TCH immediately announces it will appeal to the Fifth District Court of Appeals. The room continues to operate pending appeal.</div>
+        <div class="sig-bar" style="background:#c9a84c"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#9b72d0"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">May 2023</span>
+          <span class="tag tag-ph">Poker House Dallas</span>
+          <span class="tag tag-court">Court</span>
+        </div>
+        <div class="entry-title">Poker House Dallas Ordered to Close — May 31, 2023</div>
+        <div class="entry-detail">A Dallas County district judge rules Poker House Dallas has no legal right to operate. They are ordered to cease operations by <strong>May 23, 2023</strong>. Their appeal to the court of appeals is eventually dismissed. <strong>May 31 is their last night of operation.</strong> The club later announces plans for a new DFW location. Poker House Fort Worth (a separate entity) continues operating.</div>
+        <div class="sig-bar" style="background:#9b72d0"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#7a7aaa"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Jan 19, 2023</span>
+          <span class="tag tag-atty">City Attorney</span>
+        </div>
+        <div class="entry-title">City Attorney Chris Caso Announces Retirement</div>
+        <div class="entry-detail">One week before a scheduled performance review (twice-delayed), <strong>Chris Caso announces retirement effective Feb. 28, 2023</strong>. His tenure was defined by the flip-flop on poker rooms — he blessed the model in 2019 then reversed course in 2021. <strong>Tammy Palomino</strong>, First Assistant City Attorney, is named interim. She immediately takes the hardline anti-poker position at the Jan 25 council meeting.</div>
+        <div class="sig-bar" style="background:#7a7aaa"></div>
+      </div>
+    </div>
+
+    <div class="era-label">Phase 5 — Appeals Court Victory & Supreme Court (2024–2025)</div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#3b7fc4"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Aug 27, 2024</span>
+          <span class="tag tag-tch">TCH</span>
+          <span class="tag tag-court">5th Court of Appeals</span>
+        </div>
+        <div class="entry-title">Fifth District Court of Appeals Rules FOR Texas Card House</div>
+        <div class="entry-detail">The <strong>Court of Appeals, Fifth District of Texas backs TCH</strong>, ruling that the trial court failed to adequately consider whether the BOA's original reinstatement decision was wrong. The appeals court effectively restores TCH's right to operate. Building official <strong>Andrew Espinoza</strong> (who succeeded Session) petitions the Texas Supreme Court. The Lodge Card Club files an amicus brief in support of TCH — its direct competitor.</div>
+        <div class="sig-bar" style="background:#3b7fc4"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#c9a84c"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Sept 5, 2025</span>
+          <span class="tag tag-tch">TCH</span>
+          <span class="tag tag-court">Texas Supreme Court</span>
+        </div>
+        <div class="entry-title">🏆 Texas Supreme Court DECLINES to Hear City's Appeal</div>
+        <div class="entry-detail">The <strong>Texas Supreme Court denies Espinoza's petition for review</strong>, letting the Fifth District's ruling stand. This effectively ends the three-year legal war. The city spent over <strong>$500,000 in taxpayer money</strong> — including $370K+ in 2023 alone for Espinoza's legal expenses — and lost. Ryan Crow: "This ruling was the biggest possible win." The ruling provides legal precedent protection for card clubs statewide.</div>
+        <div class="sig-bar" style="background:#c9a84c"></div>
+      </div>
+    </div>
+
+    <div class="era-label">Champions Social Club Parallel Track (2021–2025)</div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#3d9e5f"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">2021</span>
+          <span class="tag tag-champ">Champions</span>
+          <span class="tag tag-city">Denied</span>
+        </div>
+        <div class="entry-title">Champions' First CO Application — DENIED</div>
+        <div class="entry-detail">Knighted Ventures invests in the former III Forks property at 17776 Dallas Parkway. Champions applies for a CO to operate a private social club with poker. <strong>The city denies it</strong> — the same reversal that triggers the broader city crackdown. Champions files suit. The legal battle that will consume four years begins. Hundreds of neighbors in the adjacent Bent Tree North subdivision become vocal opponents.</div>
+        <div class="sig-bar" style="background:#3d9e5f"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#3d9e5f"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">2024</span>
+          <span class="tag tag-champ">Champions</span>
+        </div>
+        <div class="entry-title">Champions Reapplies — CO Application Submitted Again</div>
+        <div class="entry-detail">After years of litigation and $15 million in full property renovations (restoring the iconic gold-domed III Forks building), <strong>Champions submits a new CO application in 2024</strong>. The application works its way through the process. The Texas Supreme Court's September 2025 refusal to hear the TCH case will create favorable precedent wind.</div>
+        <div class="sig-bar" style="background:#3d9e5f"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#3d9e5f"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">April 2025</span>
+          <span class="tag tag-champ">Champions</span>
+          <span class="tag tag-city">City Action</span>
+        </div>
+        <div class="entry-title">CO APPROVED — Then Revoked Two Weeks Later</div>
+        <div class="entry-detail">The city <strong>approves Champions' CO in April 2025</strong>. Champions begins hiring staff; some employees move in from out of state. $600,000 is invested in a state-of-the-art security system. <strong>Less than a week later, the city revokes the CO</strong>, claiming it was "issued in error" and citing illegal gambling activity. The city attorney's office files a letter calling it Champions' "second attempt" at the same previously-denied operation. Champions immediately appeals to the Board of Adjustment.</div>
+        <div class="sig-bar" style="background:#3d9e5f"></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-marker">
+        <div class="dot" style="background:#3d9e5f"></div>
+        <div class="dot-line"></div>
+      </div>
+      <div class="entry-body">
+        <div class="entry-meta">
+          <span class="entry-date">Sept 16–17, 2025</span>
+          <span class="tag tag-champ">Champions</span>
+          <span class="tag tag-court">BOA Hearing</span>
+        </div>
+        <div class="entry-title">🏆 Champions BOA Hearing — Board Votes 4–1 to Reinstate CO</div>
+        <div class="entry-detail">After a <strong>seven-and-a-half-hour hearing</strong>, the Board of Adjustment votes <strong>4-1 to reverse the city's revocation</strong>. BOA chair David Neumann cites the Texas Supreme Court's recent refusal to hear the TCH case as guiding his motion. The sole dissenting vote was Mendelsohn's representative on the board. <strong>Megan Wimer</strong>, an Assistant Director in Dallas' Planning and Development department with direct involvement in zoning and permitting matters, plays a key role in the hearing — highlighting the CO approval-revocation pattern and the significance of the city attorney change over the relevant period. Champions is required to build an 8-foot fence on the north entrance before the CO becomes fully effective. Trumbo: "We're committed to the city of Dallas."</div>
+        <div class="sig-bar" style="background:#3d9e5f"></div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- WEIMER TESTIMONY NOTE -->
+  <div class="weimer-box">
+    <h3>📋 Research Note — Megan Wimer's Role at Champions Hearing</h3>
+    <p>During the September 2025 Champions BOA hearing, <strong>Megan Wimer</strong> — an Assistant Director in Dallas' Planning and Development department with direct involvement in zoning and permitting matters — played a key role in the proceedings. Her contribution to the record made the argument that <strong>when the original COs were issued to Texas Card House and Shuffle 214, the city had a different city attorney in place</strong> — specifically that <strong>Chris Caso in his earlier role had publicly supported the poker club model</strong> and provided the legal foundation for it before his reversal. The point: the city cannot claim the COs were "issued in error" when its own attorney at the time was the one giving the green light. That argument tracked directly to the documented record — Caso stood beside Ryan Crow in January 2019 and supported the model, then reversed himself mid-2021 after being elevated to the permanent city attorney role.</p>
+  </div>
+
+  <footer>
+    Research compiled by Claude for The Sham Report / ShamGod Media LLC &nbsp;·&nbsp; Sources: PokerNews, D Magazine, Dallas Observer, CBS Texas, NBC DFW, KERA News, Axios Dallas, Card Player, Poker.org &nbsp;·&nbsp; May 2026
+  </footer>
+
+</div>
+</body>
+</html>
